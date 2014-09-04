@@ -7,8 +7,17 @@
  * Copyright 2013 Luís Almeida
  * https://github.com/luis-almeida
  */
-
-;(function($) {
+;(function (root, factory) {
+  if (typeof exports === 'object') {
+    module.exports = factory(require('jquery'))
+  }
+  else if (typeof define === 'function' && define.amd) {
+    define(['jquery'], factory);
+  }
+  else {
+    factory(root['$'] || root['Zepto']);
+  }
+}(this, function($) {
 
   $.fn.unveil = function(threshold, callback) {
 
@@ -52,5 +61,4 @@
     return this;
 
   };
-
-})(window.jQuery || window.Zepto);
+}));
